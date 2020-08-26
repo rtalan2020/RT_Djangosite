@@ -31,3 +31,17 @@ h1, h2, h3, h4 {
 .post h1 a {
     color: #000000;
 }
+
+.post-form-blog textarea {
+    width:100%;
+}
+
+.post-form-blog .btn-primary {
+    float: right;
+}
+
+.post-form-blog .btn-warning {
+    float: right;
+    margin-right: 8px
+
+}

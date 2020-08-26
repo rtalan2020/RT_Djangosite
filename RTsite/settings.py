@@ -120,14 +120,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-
-{
-    "python.linting.pylintArgs": [
-        "--load-plugins=pylint_django"
-    ],
-
-    "[python]": {
-
-    }
-}
