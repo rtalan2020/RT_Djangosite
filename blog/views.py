@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm
+from urllib.parse import parse_qs, urlparse
 
 # Create your views here.
 def post_list(request):
@@ -27,7 +28,7 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-        stuff_for_frontend = {'form': form}
+        stuff_for_frontend = {'form': form, 'post_edit':'New Post'}
     return render(request, 'blog/post_edit.html', stuff_for_frontend)
 
 
@@ -46,5 +47,5 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-        stuff_for_frontend = {'form': form}
+        stuff_for_frontend = {'form': form , 'post_edit':'Edit Post'}
     return render(request, 'blog/post_edit.html', stuff_for_frontend)
