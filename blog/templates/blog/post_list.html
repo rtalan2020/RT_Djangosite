@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+{% load markdownify %}
 {% block title %}My Blog{% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
             </div>
             <h1><a href="{% url 'post_detail' pk=post.pk %}"
                 data-toggle="tooltip" data-placement="top" title="Click to Detail View: {{post.title}}">{{ post.title }}</a></h1>
-            <p>{{ post.text|truncatechars:50|linebreaksbr }}</p>
+            <p>{{ post.text| markdown | safe | linebreaksbr }}</p>
             <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
         </div>
     {% endfor %}

@@ -1,0 +1,220 @@
+.highlight code, .highlight   pre {
+    color: #fdce93;
+    background-color: #000000;
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 16px;
+}
+ .highlight .hll {
+    background-color: #222;
+}
+ .highlight .err {
+    color: #e37170;
+    background-color: #3d3535;
+}
+ .highlight .k {
+    color: #f0dfaf;
+}
+ .highlight .p {
+    color: #41706f;
+}
+ .highlight .cs {
+    color: #cd0000;
+    font-weight: 700;
+}
+ .highlight .gd {
+    color: #cd0000;
+}
+ .highlight .ge {
+    color: #ccc;
+    font-style: italic;
+}
+ .highlight .gr {
+    color: red;
+}
+ .highlight .go {
+    color: gray;
+}
+ .highlight .gs {
+    color: #ccc;
+    font-weight: 700;
+}
+ .highlight .gu {
+    color: purple;
+    font-weight: 700;
+}
+ .highlight .gt {
+    color: #0040D0;
+}
+ .highlight .kc {
+    color: #dca3a3;
+}
+ .highlight .kd {
+    color: #ffff86;
+}
+ .highlight .kn {
+    color: #dfaf8f;
+    font-weight: 700;
+}
+ .highlight .kp {
+    color: #cdcf99;
+}
+ .highlight .kr {
+    color: #cdcd00;
+}
+ .highlight .ni {
+    color: #c28182;
+}
+ .highlight .ne {
+    color: #c3bf9f;
+    font-weight: 700;
+}
+ .highlight .nn {
+    color: #8fbede;
+}
+ .highlight .vi {
+    color: #ffffc7;
+}
+ .highlight .c, .preview-zenburn .highlight .g, .preview-zenburn .highlight .cm, .preview-zenburn .highlight .cp, .preview-zenburn .highlight .c1 {
+    color: #7f9f7f;
+}
+ .highlight .l, .preview-zenburn .highlight .x, .preview-zenburn .highlight .no, .preview-zenburn .highlight .nd, .preview-zenburn .highlight .nl, .preview-zenburn .highlight .nx, .preview-zenburn .highlight .py, .preview-zenburn .highlight .w {
+    color: #ccc;
+}
+ .highlight .n, .preview-zenburn .highlight .nv, .preview-zenburn .highlight .vg {
+    color: #dcdccc;
+}
+ .highlight .o, .preview-zenburn .highlight .ow {
+    color: #f0efd0;
+}
+ .highlight .gh, .preview-zenburn .highlight .gp {
+    color: #dcdccc;
+    font-weight: 700;
+}
+ .highlight .gi, .preview-zenburn .highlight .kt {
+    color: #00cd00;
+}
+ .highlight .ld, .preview-zenburn .highlight .s, .preview-zenburn .highlight .sb, .preview-zenburn .highlight .sc, .preview-zenburn .highlight .sd, .preview-zenburn .highlight .s2, .preview-zenburn .highlight .se, .preview-zenburn .highlight .sh, .preview-zenburn .highlight .si, .preview-zenburn .highlight .sx, .preview-zenburn .highlight .sr, .preview-zenburn .highlight .s1, .preview-zenburn .highlight .ss {
+    color: #cc9393;
+}
+ .highlight .m, .preview-zenburn .highlight .mf, .preview-zenburn .highlight .mh, .preview-zenburn .highlight .mi, .preview-zenburn .highlight .mo, .preview-zenburn .highlight .il {
+    color: #8cd0d3;
+}
+ .highlight .na, .preview-zenburn .highlight .nt {
+    color: #9ac39f;
+}
+ .highlight .nb, .preview-zenburn .highlight .nc, .preview-zenburn .highlight .nf, .preview-zenburn .highlight .bp, .preview-zenburn .highlight .vc {
+    color: #efef8f;
+}
+
+/*
+Zenburn style from voldmar.ru (c) Vladimir Epifanov <voldmar@voldmar.ru>
+based on dark.css by Ivan Sagalaev
+*/
+
+pre code {
+  display: block; padding: 0.5em;
+  background: #3F3F3F;
+  color: #DCDCDC;
+}
+
+pre .keyword,
+pre .tag,
+pre .css .class,
+pre .css .id,
+pre .lisp .title,
+pre .nginx .title,
+pre .request,
+pre .status,
+pre .clojure .attribute {
+  color: #E3CEAB;
+}
+
+pre .django .template_tag,
+pre .django .variable,
+pre .django .filter .argument {
+  color: #DCDCDC;
+}
+
+pre .number,
+pre .date {
+  color: #8CD0D3;
+}
+
+pre .dos .envvar,
+pre .dos .stream,
+pre .variable,
+pre .apache .sqbracket {
+  color: #EFDCBC;
+}
+
+pre .dos .flow,
+pre .diff .change,
+pre .python .exception,
+pre .python .built_in,
+pre .literal,
+pre .tex .special {
+  color: #EFEFAF;
+}
+
+pre .diff .chunk,
+pre .subst {
+  color: #8F8F8F;
+}
+
+pre .dos .keyword,
+pre .python .decorator,
+pre .title,
+pre .haskell .type,
+pre .diff .header,
+pre .ruby .class .parent,
+pre .apache .tag,
+pre .nginx .built_in,
+pre .tex .command,
+pre .prompt {
+    color: #efef8f;
+}
+
+pre .dos .winutils,
+pre .ruby .symbol,
+pre .ruby .symbol .string,
+pre .ruby .string {
+  color: #DCA3A3;
+}
+
+pre .diff .deletion,
+pre .string,
+pre .tag .value,
+pre .preprocessor,
+pre .built_in,
+pre .sql .aggregate,
+pre .javadoc,
+pre .smalltalk .class,
+pre .smalltalk .localvars,
+pre .smalltalk .array,
+pre .css .rules .value,
+pre .attr_selector,
+pre .pseudo,
+pre .apache .cbracket,
+pre .tex .formula {
+  color: #CC9393;
+}
+
+pre .shebang,
+pre .diff .addition,
+pre .comment,
+pre .java .annotation,
+pre .template_comment,
+pre .pi,
+pre .doctype {
+  color: #7F9F7F;
+}
+
+pre .coffeescript .javascript,
+pre .javascript .xml,
+pre .tex .formula,
+pre .xml .javascript,
+pre .xml .vbscript,
+pre .xml .css,
+pre .xml .cdata {
+  opacity: 0.5;
+}

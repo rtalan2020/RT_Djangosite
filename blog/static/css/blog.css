@@ -67,4 +67,9 @@ h1, h2, h3, h4 {
 .comment {
     margin: 20px 0px 20px 20px;
 }
-
+.highlight code, .highlight pre {
+    color: #fdce93;
+    background-color: #000000;
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 16px;
+}
