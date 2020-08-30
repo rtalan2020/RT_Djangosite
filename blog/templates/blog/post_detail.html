@@ -2,16 +2,23 @@
 {% load markdownify %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
-    <div class="post">
-
+<h1 style="color:white">.</h1>
+<div class=" ml-4  mr-4">
+      <div class="post">
         {% if post.published_date %}
             <div class="date">
-                {{ post.published_date }}
+               Published Date: {{ post.published_date }}
             </div>
         {% else %}
+            <div class="date">
+               Created Date: {{ post.created_date }}
+            </div>
+          {% if user.is_authenticated and user.is_superuser  %}
             <a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-primary mr-1">Publish</a>
+          {% endif %}
         {% endif %}
-        {% if user.is_authenticated %}
+          <hr>
+        {% if user.is_authenticated and user.is_superuser or request.user == post.author%}
             <a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-edit fa-2x"
                         style="color: #339af0; vertical-align:sub"></i></a>
             <a href="{% url 'post_delete' pk=post.pk %}" class="btn btn-danger"
@@ -26,22 +33,29 @@
     <hr>
     <a href="{% url 'add_comment_to_post' pk=post.pk %}" class="btn btn-secondary mb-2">Add comment</a>
     {% for comment in post.comments.all %}
-        {% if user.is_authenticated or comment.approved %}
+        {% if user.is_authenticated and comment.approved  or user.is_superuser or  not comment.approved and comment.author == request.user.username %}
             <div class="comment">
                 <hr style="background:rgba(255, 255, 255)">
                 <div class="date">
-                    {{ comment.created_date }}
+                   {{ comment.created_date }}
                 </div>
-                <strong>{{ comment.author }}</strong>
-                <br>
-                {% if not comment.approved and user.is_superuser %}
+                <strong>{{ comment.author }}</strong><br>
+                {% if not comment.approved and user.is_superuser  %}
                     <a href="{% url 'comment_approve' pk=comment.pk %}"><i class="fas fa-check"></i></a>
+				{% endif %}
+                {% if comment.author == request.user.username or user.is_superuser %}
 					<a href="{% url 'comment_remove' pk=comment.pk %}"><i class="fas fa-trash-alt"></i></a>
 				{% endif %}
+                {% if comment.author == request.user.username %}
+					<a href="{% url 'edit_comment_to_post' pk=comment.pk %}"><i class="fas fa-edit"></i></a>
+				{% endif %}
+
                 <p>{{ comment.text | markdown | safe | linebreaksbr }}</p>
 			</div>
         {% endif %}
     {% empty %}
         <p>No comments yet...</p>
-
-    {% endfor %}{% endblock %}
+     <h1 style="color:white">.</h1>
+    {% endfor %}
+</div>
+{% endblock %}

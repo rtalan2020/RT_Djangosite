@@ -3,11 +3,15 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ post_edit }}</h1>
-    <form method="post" class="post-form-blog">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">SAVE</button>
-        <a href="/" class="btn btn-warning">Cancel</a>
-    </form>
+    <div class="ml-4  mr-4">
+        <h3 style="color:white">.</h3>
+        <h1>{{ post_edit }}</h1>
+        <form method="post" class="post-form-blog">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">SAVE</button>
+            <a href="/" class="btn btn-warning">Cancel</a>
+        </form>
+        <h1 style="color:white">.</h1>
+    </div>
 {% endblock %}

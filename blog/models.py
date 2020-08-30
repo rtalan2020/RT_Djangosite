@@ -33,4 +33,4 @@ class Comment(models.Model):
         self.save()
 
     def __str__(self):
-        return self.text
+        return 'Comment :' + self.created_date.strftime('%m/%d/%Y, %H:%M:%S')

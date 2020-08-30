@@ -3,12 +3,16 @@
 {% block title %}Adding a Comment{% endblock %}
 
 {% block content %}
-    <h5>Post Title: {{title}}</h5>
-    <h1>New comment</h1>
-    <form class="post-form-blog" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Post</button>
-        <a href="/" class="btn btn-warning">Cancel</a>
-    </form>
-{% endblock %} 
+    <div class="ml-4  mr-4">
+        <h3 style="color:white">.</h3>
+        <h5>Post Title: {{title}}</h5>
+        <h1>{{ comment_new_edit }}</h1>
+        <form class="post-form-blog" method="post" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Post</button>
+            <a href="/" class="btn btn-warning">Cancel</a>
+            <h1 style="color:white">.</h1>
+        </form>
+    </div>
+{% endblock %}

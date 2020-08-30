@@ -4,14 +4,18 @@
 
 {% block content %}
     {% for post in posts %}
-        <div class="post">
+        <div class="post ml-4  mr-4">
             <div class="date">
+                <h3 style="color:white">.</h3>
                 <p>Published: {{ post.published_date }}</p>
             </div>
             <h1><a href="{% url 'post_detail' pk=post.pk %}"
                 data-toggle="tooltip" data-placement="top" title="Click to Detail View: {{post.title}}">{{ post.title }}</a></h1>
             <p>{{ post.text| markdown | safe | linebreaksbr }}</p>
             <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+            <h3 style="color:white">.</h3>
         </div>
     {% endfor %}
 {% endblock %}
+
+

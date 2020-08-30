@@ -3,13 +3,16 @@
 {% block title %}My drafts{% endblock %}
 
 {% block content %}
-    <div class="mb-4"><h5>UNPUBLISHED POSTS</h5></div>
-    {% for post in posts %}
-        <div class="post">
-            <p class="date">created: {{ post.created_date|date:'m-d-Y' }}</p>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|truncatechars:50 }}</p>
-        </div>
-    {% endfor %}
-
+    <div class="post ml-4  mr-4">
+        <h3 style="color:white">.</h3>
+        <div class="mb-4"><h5>UNPUBLISHED POSTS</h5></div>
+        {% for post in posts %}
+            <div class="post">
+                <p class="date">created: {{ post.created_date|date:'m-d-Y' }}</p>
+                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                <p>{{ post.text|truncatechars:50 }}</p>
+                <h3 style="color:white">.</h3>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %} 

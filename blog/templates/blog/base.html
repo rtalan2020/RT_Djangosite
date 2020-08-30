@@ -6,41 +6,102 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="shortcut icon" href="#">
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inconsolata:wght@800&family=Suez+One&family=Tangerine:wght@700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/burger.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/zenburn.css' %}">
 </head>
 <body>
 <div>
+    <video id="videoBG" poster="" autoplay muted loop>
+        <source src="{% static 'media/videoback.mp4' %}" type="video/mp4">
+    </video>
     <div class="page-header ">
+        <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:rgbargba(255, 148, 0, 1);font-size:.9rem; margin-top:0 ">
+          <a class="navbar-brand" href="#" style="color:#EAEDED">RTTech</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse"
+                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="https://ca.linkedin.com/in/rodolfo-talan-80a74017" style="color:#EAEDED">Linkedin</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="https://twitter.com/RodolfoTalan" style="color:#EAEDED">Twitter</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.youtube.com/channel/UC8J7CJK9jrePNu4l1rOfOJw?view_as=subscriber " style="color:#EAEDED">Youtube</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.instagram.com/rtalanrtarts/" style="color:#EAEDED">Instagram</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/rtalan2020" style="color:#EAEDED">Github</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color:#EAEDED">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color:#EAEDED">About</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2" method="get" action="{% url 'search' %}">
+                {% csrf_token %}
+              <input class="form-control mr-sm-2 " style="font-size:.9rem" name="search" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" style="font-size:.9rem"  type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
         {% if user.is_authenticated %}
-            <a href="{% url 'post_draft_list' %}" class="top-menu"><i class="fab fa-firstdraft fa-2x"
-               data-toggle="tooltip" data-placement="top" title="View Draft"></i></a>
-            <a href="{% url 'post_new' %}" class="top-menu"><i class="fas fa-plus fa-2x"
-               data-toggle="tooltip" data-placement="top" title="Add Post"></i></a>
-            <p class="top-menu">Hello {{ user.username|title }} <span class="ml-2">|</span><medium><a class="ml-3" href="{% url 'logout' %}">Log out</a></medium></p>
+           <div class="dropdown top-menu btn-group dropleft" >
+              <button class="btn  dropdown " type="button" role="button"
+                      data-toggle="dropdown" style="background: rgba(255, 148, 0, .1); color:white" data-hover="dropdown")>
+               <i class="fas fa-angle-double-left fa-2x"></i>
+              </button>
+              <div class="dropdown-menu dropdown-content"  aria-labelledby="dropdownMenuButton">
+                  {% if user.is_authenticated and user.is_superuser %}
+                    <a href="{% url 'post_draft_list' %}" class="dropdown-item"><i class="fab fa-firstdraft ml-2"
+                        data-toggle="tooltip"  title="View Draft"></i> View Draft</a>
+
+                  {% endif %}
+                    <a href="{% url 'post_new' %}" class="dropdown-item"><i class="fas fa-plus ml-2"
+                        data-toggle="tooltip" title="Add Post"></i> Add Post</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt ml-2"
+               data-toggle="tooltip" title="Log out"></i> Log out</a>
+              </div>
+            </div>
+<!--            <a href="{% url 'post_draft_list' %}" class=" top-menu"><i class="fab fa-firstdraft fa-2x"-->
+<!--               data-toggle="tooltip" data-placement="top" title="View Draft"></i> View Draft</a>-->
+<!--            <a href="{% url 'post_new' %}" class="top-menu"><i class="fas fa-plus fa-2x"-->
+<!--               data-toggle="tooltip" data-placement="top" title="Add Post"></i></a>-->
+            <p class="top-menu mt-4 mr-4">Hello {{ user.username|title }}</p>
 
         {% else %}
-            <a href="{% url 'login' %}" class="top-menu"><i class="fas fa-sign-in-alt fa-2x"
+            <a href="{% url 'login' %}" class="top-menu mr-5"><i class="fas fa-sign-in-alt"
                data-toggle="tooltip" data-placement="top" title="Login to add/edit Post"></i></a>
+            <a href="{% url 'signup' %}" class="top-menu"><i class="fas fa-user-plus "
+               data-toggle="tooltip" data-placement="top" title="Register"></i></a>
         {% endif %}
         <h1><a href="{% url 'post_list' %}" data-toggle="tooltip" data-placement="top" title="Home">The RTTech Codes Arts and More</a></h1>
     </div>
 
-    <div class="row mt-5 ml-3">
-        <div class="col-md-8">
-
-            {% block content %}
-            {% endblock %}
-
-        </div>
+     <div class="container mt-5 mb-5" style="background:rgba(255, 255, 255,.9)" >
+                {% block content %}
+                {% endblock %}
+     </div>
+    <div style="color:grey">
+        Stock Footage by <a href="http://videezy.com">Videezy.com</a>
     </div>
+
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </body>
 </html>
