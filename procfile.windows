@@ -1,1 +1,0 @@
-web: python manage.py runcerver 0.0.0.0:5000
