@@ -28,9 +28,13 @@ html,body {
     }
 }
 .page-header {
-    background-color: #0B5345;
+    background-color: rgba(11, 83, 69, .7);
     margin-top: 0;
-    padding: 20px 20px 20px 40px;
+    padding: 5px 40px 20px 40px;
+}
+
+.page-header:hover {
+     background-color: rgba(11, 83, 69, 0);
 }
 
 .page-header h1, .page-header h1 a{
@@ -52,7 +56,7 @@ h1, h2, h3, h4 {
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 0px;
 }
 
 .post h1 a {
@@ -103,7 +107,7 @@ h1, h2, h3, h4 {
 
 .container {
    margin:auto;
-   max-width:80%
+   width:80%
 }
 
 .login {
@@ -120,4 +124,79 @@ h1, h2, h3, h4 {
     margin: 0 auto;
     border:1px solid black;
     border-radius: 20px;
+}
+
+#mannaverse-reference, .thought_author {
+    color:rgb(10, 95, 10);
+    margin-top:15px;
+}
+
+.rttech {
+    margin-bottom:0;
+    padding-top:0;
+}
+
+.about{
+    width:70%;
+    margin:auto;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.footer{
+    background-color: rgba(11, 83, 69, 0.7);   
+}
+.footer:hover{
+   background-color: rgba(11, 83, 69, 0); 
+}
+
+.thoughts:hover{
+    background-color: rgba(216, 241, 236, 0.5);
+}
+
+.bibleverse:hover{
+    background-color: rgba(216, 241, 236, 0.5);
+}
+
+body ul, body ol {
+  line-height: 0;
+}
+
+.card_row{
+    margin:auto;
+    width:80%;
+}
+
+.button_Shadow{
+    box-shadow: 10px 10px 50px rgba(248, 251, 250, 0.9);
+    border:2px solid silver;
+    border-radius:0px;
+   }
+
+.button_Shadow:hover{
+    box-shadow: 10px 10px 50px rgba(43, 84, 197, 0.9);
+}
+
+.projects{
+    align-items: center;
+    padding: 30px;
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid black;
+}
+
+a.col-lg-4.img-fluid{
+   text-decoration: none;
+   color:black;
+}
+
+.modal-header{
+    background:rgb(226, 228, 227);
+}
+
+.projectcards{
+    background:rgba(249, 250, 249,.8);
 }

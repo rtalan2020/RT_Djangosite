@@ -1,0 +1,127 @@
+html,body {
+    width:100vw;
+    height: 100vh;
+    margin: 0;
+}
+#videoBG {
+    position:fixed;
+    z-index: -1;
+}
+@media (min-aspect-ratio: 16/9) {
+    #videoBG {
+        width:100%;
+        height: auto;
+    }
+}
+@media (max-aspect-ratio: 16/9) {
+    #videoBG {
+        width:auto;
+        height: 100%;
+    }
+}
+@media (max-width: 767px) {
+    #videoBG {
+        display: none;
+    }
+    body {
+        background-size: cover;
+    }
+}
+.page-header {
+    background-color: #0B5345;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+
+.page-header h1, .page-header h1 a{
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+.content {
+    margin-left: 40px;
+}
+
+h1, h2, h3, h4 {
+    font-family:  'Bree Serif',  'Tangerine', 'Inconsolata', 'Droid Sans', serif;
+}
+
+.date {
+    color: #828282;
+}
+
+.post {
+    margin-bottom: 0px;
+}
+
+.post h1 a {
+    color: #000000;
+}
+
+.post-form-blog textarea {
+    width:100%;
+}
+
+.post-form-blog .btn-primary {
+    float: right;
+}
+
+.post-form-blog .btn-warning {
+    float: right;
+    margin-right: 8px
+}
+
+.post-form-blog input{
+   margin-left: 10px;
+}
+
+.top-menu, .top-menu:hover {
+    color: #ffffff;
+    float: right;
+    font-size: 15pt;
+    margin-right: 20px;
+    margin-top:12px;
+}
+
+.loginF p:nth-child(2) input{
+    margin-left: 10px;
+}
+.loginF p:nth-child(3) input{
+    margin-left: 15px;
+}
+
+.comment {
+    margin: 20px 0px 20px 20px;
+}
+.highlight code, .highlight pre {
+    color: #fdce93;
+    background-color: #000000;
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 16px;
+}
+
+.container {
+   margin:auto;
+   width:80%
+}
+
+.login {
+  border: 1px solid grey;
+  margin: 10px ;
+  margin:auto;
+  width:40%;
+  padding: 25px;
+  border-radius:20px;
+}
+
+.signup {
+    width: 400px;
+    margin: 0 auto;
+    border:1px solid black;
+    border-radius: 20px;
+}
+
+#mannaverse-reference {
+    color:green;
+}

@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% block title %}Video Feature{% endblock %}
+{% block content %}
+<div class="container">
+    <div>
+      <hr>
+      <hr class="mt-5">
+      <a type="button" class="close" href="/" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>        
+      <h5>Changing Featured Video </h5>
+      <hr>
+            
+    </div>
+    <div class="" style="margin:auto;width:70%;border:1px solid grey">
+      <form  class="mx-5 " method="post"  >
+        {% csrf_token %}
+        <div class="form-group mt-3">
+          <label for="recipient-name" class="col-form-label">Title</label>
+          <input type="text" class="form-control"  required name="title" id="title" >
+        </div>
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">Description:</label>
+          <textarea class="form-control"  required  name="description" id="description"></textarea>
+        </div>
+        <div class="form-group" method=post action='/'>
+            <label for="recipient-name" class="col-form-label">Part of Youtube Embed link: (i.e.) 7S_tz1z_5bA </label>
+            <input type="text" name="source"   required  class="form-control" id="source" >
+        </div>    
+        <div class="modal-footer  mx-3">
+          <a href="/" class="btn btn-dark ">Cancel</a>
+          <button type="submit" class="btn btn-info ">Submit</button>
+        </div>   
+      </form>
+    </div>
+    <p class="mt-1">.</p>
+</div>
+
+{% endblock %}
+
+  

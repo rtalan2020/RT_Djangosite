@@ -50,8 +50,24 @@ urlpatterns = [
     # mydjangosite.com/signup --> online
     path('signup/', views.signup, name='signup'),
 
-    # 127.0.0.1:8000/signup --> local
-    # mydjangosite.com/signup --> online
-    path('search/', views.search, name='search'),
+    # 127.0.0.1:8000/search --> local
+    # mydjangosite.com/search --> online
+    # path('search/', views.search, name='search'), not needed anymore
+
+    # 127.0.0.1:8000/about --> local
+    # mydjangosite.com/about --> online
+    path('about/', views.about, name='about'),
+
+    # 127.0.0.1:8000/contact --> local
+    # mydjangosite.com/contact --> online
+    path('contact/', views.contact, name='contact'),    
+
+    # 127.0.0.1:8000/video --> local
+    # mydjangosite.com/video --> online
+    path('videofeature/', views.videofeature, name='videofeature'),   
+
+    # 127.0.0.1:8000/perpage --> local
+    # mydjangosite.com/vidperpageeo --> online
+    # path('perpage/', views.perpage, name='perpage'),   
 
 ]

@@ -34,3 +34,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment :' + self.created_date.strftime('%m/%d/%Y, %H:%M:%S')
+
+class FeatureVideo(models.Model):
+    author = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    source = models.CharField(max_length=200)
+    created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title

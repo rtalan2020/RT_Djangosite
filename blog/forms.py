@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Post, Comment
+from .models import Post, Comment, FeatureVideo
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -23,4 +23,9 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password',)
+
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model = FeatureVideo
+        fields = ('title', 'description', 'source',)
 

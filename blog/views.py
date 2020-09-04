@@ -1,27 +1,41 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post, Comment
+from .models import Post, Comment, FeatureVideo
 from django.contrib.auth import login
 from django.contrib.auth.models import User
-from .forms import PostForm, CommentForm, UserForm
-from .sample import my_function
+from .forms import PostForm, CommentForm, UserForm, VideoForm
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .post_perpage import getitemsno, setitemsno, drop_page_no
 from django.db.models import Q
 
-# Create your views here.
+
+
 def post_list(request):
+    try:
+        post_page = request.GET.get('op')
+        post_page = int(post_page)
+    except:
+        post_page = getitemsno()
+         
+    
+    try:
+        search = request.GET.get('search')
+        posts = Post.objects.filter(title__icontains=search).order_by('-title') 
+    except:
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        search = ''
+     
+    stuff_for_frontend = paginate_helper(request,posts,post_page)
+    post_video = FeatureVideo.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')
+    latest_video = list(post_video)[0]   
 
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    stuff_for_frontend = {'posts': posts}
-    return render(request, 'blog/post_list.html', stuff_for_frontend)
+    stuff_for_frontend['search'] = search  
+    stuff_for_frontend['post_page'] = post_page
+    stuff_for_frontend['postv'] = latest_video
+    stuff_for_frontend['drop_page_no'] = drop_page_no
 
-# Create your views here.
-def search(request):
-    query = request.GET.get('search')
-    print(request.GET)
-    posts = Post.objects.filter(title__icontains=query)
-    stuff_for_frontend = {'posts': posts}
-    return render(request, 'blog/post_list.html', stuff_for_frontend)
+    return render(request, 'blog/post_list.html', stuff_for_frontend) 
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -62,8 +76,9 @@ def post_edit(request, pk):
 @login_required
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
-    stuff_for_frontend = {'posts': posts}
+    stuff_for_frontend = paginate_helper(request, posts, getitemsno())
     return render(request, 'blog/post_draft_list.html', stuff_for_frontend)
+    return render(request, 'blog/post_draft_list.html', {'posts':posts})
 
 @login_required
 def post_publish(request, pk):
@@ -134,3 +149,31 @@ def signup(request):
     else:
         form = UserForm()
     return render(request, 'blog/signup.html', {'form': form})
+
+def about(request):
+    return render(request, 'blog/about.html')   
+
+def contact(request):
+    return render(request, 'blog/contact.html') 
+
+@login_required
+def videofeature(request):
+    if request.method == 'POST':
+        form = VideoForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user.username
+            post.save()
+            return redirect('/') 
+    else:
+        form = VideoForm()
+        stuff_for_frontend = {'form': form}
+    return render(request, 'blog/add_video.html', stuff_for_frontend) 
+
+
+def paginate_helper(request, posts, getitemsno):
+    paginator = Paginator(posts, getitemsno)
+    page_number = request.GET.get('page')
+    posts = paginator.get_page(page_number)
+    stuff_for_frontend = {'posts': posts}
+    return stuff_for_frontend

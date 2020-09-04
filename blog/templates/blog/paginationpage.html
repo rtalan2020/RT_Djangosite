@@ -1,0 +1,85 @@
+
+<p></p>
+<p></p>
+
+<div class="container w-100 " style="background:rgba(183, 224, 226, 0.685);border-radius:5px" >
+  {% if not 'drafts' in request.build_absolute_uri %}
+  <div class="row justify-content-left py-2">
+     <div class="col mt-1">
+      <a class=" text-info float-left ml-2"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fas fa-angle-double-down"></i>
+      </a>
+      {%if posts%}
+        {% if posts.paginator.num_pages != 1 %}
+          <div>
+              <div >
+                <a class="btn btn-outline-info btn-sm ml-1 float-right" >Total Pages:  {{posts.paginator.num_pages}}</a>
+              </div>
+              <div class="float-right">
+                   {% if posts.has_previous %}
+                      <a class="btn btn-sm btn-outline-info " href="?op={{post_page}}&page=1&search={{search}}">First</a>
+                      <a class="btn btn-sm btn-outline-info  " href="?op={{post_page}}&page={{ posts.previous_page_number }}&search={{search}}">Previous</a>
+                    {% endif %} 
+                    {% for num in posts.paginator.page_range %}
+                      {% if posts.number == num %}
+                        <a class="btn btn-sm btn-info " href="?op={{post_page}}&page={{ num }}&search={{search}}">{{ num }}</a>
+                      {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                        <a class="btn btn-sm btn-outline-infot" href="?op={{post_page}}&page={{ num }}&search={{search}}">{{ num }}</a>
+                      {%endif%}  
+                    {% endfor %}
+                    {% if posts.has_next %}
+                      <a class="btn btn-sm btn-outline-info " href="?op={{post_page}}&page={{ posts.next_page_number }}&search={{search}}">Next</a>
+                      <a class="btn btn-sm btn-info" href="?op={{post_page}}&page={{ posts.paginator.num_pages }}&search={{search}}">Last</a>
+                    {% endif %}
+              </div>       
+          </div>
+        {%else%}      
+            {% if not 'drafts' in request.build_absolute_uri %}
+
+                <a class="btn btn-sm btn-outline-info float-right" >Page 1 of 1</a>              
+                <a class="btn btn-outline-info  float-right mr-1 " href="/" style="font-size:small"><i class="fas fa-redo"></i></a>    
+
+            {%endif%}
+        {% endif %}
+      {%else%}
+        {% if not 'drafts' in request.build_absolute_uri %}
+         <h5 class="float-right mr-1">Nothing to show</h5>
+        {%endif%}
+      {%endif%}   
+    </div>   
+  </div>
+  <div class="container w-100 my-2 collapse" id="collapseExample">
+    <div class="row "  style="border-top:1px solid grey">
+      <div class="col-sm my-auto ">
+          <p class="text-info mt-1">Search String : {{search}}</p>
+      </div>
+
+      <div class="col-sm" style="padding-right:0;">
+        <div class="col mt-1" style="padding-right:0;">
+          <div class="" >
+            <div class="float-right">
+                <a class="btn btn-outline-info  btn-sm mt-1 ml-2 ml-5 pr-2" href="/" style="font-size:small"><i class="fas fa-redo"></i></a>    
+                <span class="text-info pt-2 mr-3" style="font-size:smaller" >Reset</span>
+            </div>
+
+            <div class="" >
+              <form class= "float-right " method="GET" id="perpageSubmit" action="{% url 'post_list' %}">
+                <select class="btn btn-outline-info btn-sm mt-1" style="height:28px;" onchange="pformSubmit()" name="op" id="selectid">
+                  {% for choice in drop_page_no %}      
+                    <option style="font-size:12px" class="" value="{{choice}}" {% if post_page == choice %} selected {% endif %}>{{choice}}</option>
+                  {%endfor%}  
+                </select>   
+                <input class="form-control"  style="font-size:.9rem;display:none" id="searchhiddenOp" value="{{search}}" placeholder="{{search}}" name="search" >
+                <span class="text-info my-1" style="font-size:smaller" >Posts per page </span>
+              </form>          
+            </div>   
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endif%}
+</div>
+<p></p>
+
+

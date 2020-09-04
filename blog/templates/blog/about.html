@@ -1,0 +1,97 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<br>
+<div class="about mt-5" >
+      <h1 class="text-center">Computer Coding Blog</h1>
+      <h4 class="text-center">Django-Python</h4>
+        <ul class=" mt-5" style="list-style:upper-roman">
+            <li><h3>UnRegistered User:</h3>
+                <h5>Authorized to... </h5>
+              <ol class="btn-sm mt-2 ml-5">
+                <li>
+                    View Home Page - Post List
+                </li>
+                <li>
+                    The Detail Page - View Specific Post Detail with Comments
+                </li>             
+                <li>
+                    Registration available
+                </li> 
+              </ol>
+            </li>       
+            <li><h3>Registered Users:</h3>
+                <h5>Authorization extended to...</h5>
+              <ol class="btn-sm mt-2 ml-5">
+                <li>
+                    Add comments
+                </li>     
+                <li>
+                    Edit and Delete their own Comments
+                </li>                                   
+              </ol>
+            </li>   
+            <li><h3>Administrator/Superuser:</h3>
+                <h5>Full authorization</h5>
+              <ol class="btn-sm mt-2 ml-5">
+                <li>
+                    Approve all Posts and Comments
+                </li>
+                <li>
+                    Edit and Delete all Posts
+                </li>     
+                <li>
+                    Delete all comments but can edit only his own comment
+                </li>   
+                <li>
+                    Add Feature to the database. The latest added Feature Video data will be displayed to the Feature Section
+                </li>                
+              </ol>
+            </li>  
+        </ul>
+        <hr>
+        <h4>All Posts and comments are to be approved first by the admin/supervisor</h4>
+        <hr>
+        <h4>The sidebar / API </h4>        
+        <ol class="btn-sm ml-5">
+            <li>
+                Scripture: changes everytime page is refreshed, or once the scripture card is clicked
+            </li>
+            <li>
+                API source: http://www.ourmanna.com/verses/api/?order=random 
+	            returns one verse code by virtue of order=random
+            </li>
+            <li>
+                Thought for today: changes everytime page is refreshed, or once the thought card is clicked
+            </li>
+            <li>
+                API source: https://type.fit/api/quotes
+	            returns the whole json of thoughts
+            </li>
+            <li>
+                Javascript DOM manipulation - js/mywidgets.js
+            </li>
+            <li>
+                used Math random function to pull out a random verse
+            </li>                        
+        </ol>
+        <hr>
+        <h4>Features/Technology:</h4>
+        <div  class="btn-sm ml-5">
+            <h6>django-crispy-forms==1.9.2</h6>
+            <h6>Markdown==3.2.2</h6>
+            <h6>Paginator</h6>     
+            <h6>Django Login/Registration</h6>       
+        </div>
+        <hr>
+        <h4>Bootstrap and other implementations:</h4>
+        <div  class="btn-sm ml-5 mb-5">
+            <h6>The App is Responsive : bootstrap/4.1.3</h6>
+            <h6>Video Background</h6>
+            <h6>NavBar Component</h6>      
+            <h6>Card Component</h6>
+            <h6>Youtube video embed</h6>                    
+        </div>
+      
+    </div>
+<br>
+{% endblock %}

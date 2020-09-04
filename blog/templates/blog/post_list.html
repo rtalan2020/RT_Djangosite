@@ -1,21 +1,71 @@
 {% extends 'blog/base.html' %}
 {% load markdownify %}
 {% block title %}My Blog{% endblock %}
-
 {% block content %}
-    {% for post in posts %}
-        <div class="post ml-4  mr-4">
-            <div class="date">
-                <h3 style="color:white">.</h3>
-                <p>Published: {{ post.published_date }}</p>
-            </div>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}"
-                data-toggle="tooltip" data-placement="top" title="Click to Detail View: {{post.title}}">{{ post.title }}</a></h1>
-            <p>{{ post.text| markdown | safe | linebreaksbr }}</p>
-            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
-            <h3 style="color:white">.</h3>
+<div class="row ">
+    <div class="col-lg-8 col-sm-8 col-md-8">
+
+        <div >
+          {% include 'blog/paginationpage.html' %}
         </div>
-    {% endfor %}
+
+        <div class="mb-3">
+            {% for post in posts %}
+                <div class="card" >
+                  <div class="card-header" >
+                      <span>Published: {{ post.published_date }}</span>
+                  </div>
+                  <div class="card-body">
+                          <h3><a href="{% url 'post_detail' pk=post.pk %}"
+                              data-toggle="tooltip" data-placement="top" title="Click to Detail View: {{post.title}}">{{ post.title }}</a></h3>
+                    <p>{{ post.text| markdown | safe | linebreaksbr }}</p>
+                        <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+                  </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if posts %}
+          {% include 'blog/paginationpage.html' %}
+        {% endif %}
+    </div>
+    <div class="col-sm-4 col-md-5 col-lg-4 mt-4 ">
+      <div class="card">
+          <h5 class="card-header">Feature 
+            {% if user.is_authenticated and user.is_superuser %}
+            <!-- <button type="button" class="float-right btn btn-info btn-sm px-3" data-toggle="modal" data-target="#exampleModal" data-whatever="{{ request.user.username }}">Change</button> -->
+            <a href="{% url 'videofeature' %}" class="float-right btn btn-info btn-sm px-3">Change</a>
+            {% endif %}
+          </h5>
+                  <iframe style="margin:auto" id='youtube_src' width="100%" height="200px" src="https://www.youtube.com/embed/{{ postv.source }}"
+                  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen >
+                  </iframe>
+          <div class="card-body">
+              <h5 class="card-title video_title">{{postv.title}}</h5>
+             <p class="card-text video_description" >{{postv.description}}</p>
+          </div>
+      </div>
+      <div class="card mt-2">
+        <div class="card-body bibleverse" onclick="location.reload()" style="border-bottom: 1px solid rgb(240, 233, 233)"
+                data-toggle="tooltip"  title="Click for new Bible Verse" >
+          <h5 class="card-title" style="padding-left:0">The Scripture</h5>
+          <div id="ourmanna-verse">Loading...</div>
+        </div>
+          <div class="card-body thoughts"  onclick="getthoughts()" 
+              data-toggle="tooltip"  title="Click for new quote">
+            <h5 class="card-title  ">Thought for today</h5>
+            <p class="card-text " id="thoughts"  >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="#" class="card-link">Announcements</a></li>
+            <li class="list-group-item"><a href="#" class="card-link">Calendars</a></li>
+          </ul>
+        </div>
+    </div>
+    <p style="font-size:x-small;color:white">.</p>
+</div>
+<!-- {% include 'blog/videomodal.html' %} -->
+
 {% endblock %}
 
 
