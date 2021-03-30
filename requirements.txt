@@ -10,7 +10,7 @@ lazy-object-proxy==1.4.3
 Markdown==3.2.2
 mccabe==0.6.1
 mistune==0.8.4
-Pygments==2.6.1
+Pygments==2.7.4
 pylint==2.6.0
 pylint-django==2.3.0
 pylint-plugin-utils==0.6
